@@ -53,26 +53,37 @@ function App() {
 	return (
 		<div class="container">
 			<div class="row justify-content-md-center">
-				<div class="col col-lg-6 centering">
-					<input
-						placeholder="Enter new task"
-						type="text"
-						onChange={(e) => setNewTask(e.target.value)}
-						onKeyPress={handleKeypress}
-						value={newTask}
-					></input>
-					<input placeholder="Filter tasks" type="text"></input>
-					<ul>
-						{task.map((item) => (
-							<li key={item.id}>
-								<input type="checkbox"></input>
-								<a href={item.url}>{item.title}</a>
-								<button className="btn btn-outline-success" onClick={() => deleteTask(item.id)}>
-									Delete
-								</button>
-							</li>
-						))}
-					</ul>
+				<div class="col col-lg-6 ">
+					<div class="card" style={{ width: 400 }}>
+						<img
+							class="card-img-top"
+							src="http://s3-ap-southeast-1.amazonaws.com/images.humanresourcesonline.net/wp-content/uploads/2014/08/SabrinaZolkifi-Aug-2014-multi-tasking-woman-cartoon-shutterstock.jpg"
+							alt="Card image"
+						></img>
+						<div class="card-body">
+							<h4 class="card-title">Tasks List</h4>
+
+							<input
+								placeholder="Enter new task"
+								type="text"
+								onChange={(e) => setNewTask(e.target.value)}
+								onKeyPress={handleKeypress}
+								value={newTask}
+							></input>
+							<input placeholder="Filter tasks" type="text"></input>
+							<ul>
+								{task.map((item) => (
+									<li key={item.id}>
+										<input type="checkbox"></input>
+										<a href={item.url}>{item.title}</a>
+										<button className="btn btn-outline-success" onClick={() => deleteTask(item.id)}>
+											Delete
+										</button>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

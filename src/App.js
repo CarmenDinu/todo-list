@@ -31,6 +31,13 @@ function App() {
 		let dates = await resp.json();
 		setTask(dates);
 	};
+	let handleKeypress = (e) => {
+		if (e.key === 'Enter') {
+			postWishWithAsync();
+			setNewTask('');
+		}
+	};
+
 	let deleteTask = async (item) => {
 		await fetch('http://localhost:6789/tasks/' + item, {
 			method: 'DELETE',
@@ -42,12 +49,6 @@ function App() {
 		let resp = await fetch('http://localhost:6789/tasks');
 		let dates = await resp.json();
 		setTask(dates);
-	};
-	let handleKeypress = (e) => {
-		if (e.key === 'Enter') {
-			postWishWithAsync();
-			setNewTask('');
-		}
 	};
 
 	return (
@@ -65,11 +66,24 @@ function App() {
 						className="form-control"
 						placeholder="Enter new task"
 						type="text"
-						onChange={(e) => setNewTask(e.target.value)}
+						onChange={(event) => setNewTask(event.target.value)}
 						onKeyPress={handleKeypress}
 						value={newTask}
 					></input>
-					<input className="form-control" placeholder="Filter tasks" type="text"></input>
+					<input
+						className="form-control"
+						placeholder="Filter tasks"
+						onChange={(e) =>
+							fetch('http://localhost:6789/tasks/filter/?name=' + e.target.value)
+								.then((response) => {
+									return response.json();
+								})
+								.then((data) => {
+									setTask(data);
+								})
+						}
+						type="text"
+					></input>
 					<ul className="list-group">
 						{task.map((item) => (
 							<li className="list-group-item list-group-item-info" key={item.id}>

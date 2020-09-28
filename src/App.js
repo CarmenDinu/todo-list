@@ -49,29 +49,36 @@ function App() {
 			setNewTask('');
 		}
 	};
+	// let filterTasks = async (name) => {
+	// 	await fetch('http://localhost:6789/tasks/filter/?' + name);
+	// 	let resp = await fetch('http://localhost:6789/tasks');
+	// 	let dates = await resp.json();
+	// 	setTask(dates);
+	// };
 
 	return (
-		<div class="row justify-content-md-center">
-			<div class="card" style={{ width: 400 }}>
+		<div className="row justify-content-md-center">
+			<div className="card" style={{ width: 400 }}>
 				<img
-					class="card-img-top"
+					className="card-img-top"
 					src="http://s3-ap-southeast-1.amazonaws.com/images.humanresourcesonline.net/wp-content/uploads/2014/08/SabrinaZolkifi-Aug-2014-multi-tasking-woman-cartoon-shutterstock.jpg"
-					alt="Card image"
+					alt="Card"
 				></img>
-				<div class="card-body">
-					<h4 class="card-title">Tasks List</h4>
+				<div className="card-body">
+					<h4 className="card-title">Tasks List</h4>
 
 					<input
+						className="form-control"
 						placeholder="Enter new task"
 						type="text"
 						onChange={(e) => setNewTask(e.target.value)}
 						onKeyPress={handleKeypress}
 						value={newTask}
 					></input>
-					<input placeholder="Filter tasks" type="text"></input>
-					<ul>
+					<input className="form-control" placeholder="Filter tasks" type="text"></input>
+					<ul className="list-group">
 						{task.map((item) => (
-							<li key={item.id}>
+							<li className="list-group-item list-group-item-info" key={item.id}>
 								<input type="checkbox"></input>
 								<a href={item.url}>{item.title}</a>
 								<button className="btn btn-outline-success" onClick={() => deleteTask(item.id)}>

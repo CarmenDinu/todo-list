@@ -49,12 +49,6 @@ function App() {
 			setNewTask('');
 		}
 	};
-	// let filterTasks = async (name) => {
-	// 	await fetch('http://localhost:6789/tasks/filter/?' + name);
-	// 	let resp = await fetch('http://localhost:6789/tasks');
-	// 	let dates = await resp.json();
-	// 	setTask(dates);
-	// };
 
 	return (
 		<div className="row justify-content-md-center">

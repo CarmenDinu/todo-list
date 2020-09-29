@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 function App() {
 	const [task, setTask] = useState([]);
 	const [newTask, setNewTask] = useState();
+	const [checked, setChecked] = useState(true);
 
 	useEffect(() => {
 		fetch(' http://localhost:6789/tasks')
@@ -51,6 +52,21 @@ function App() {
 		setTask(dates);
 	};
 
+	let checkBox = async (item) => {
+		await fetch('http://localhost:6789/tasks/' + item + '/status/', {
+			method: 'PATCH',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ isCompleted: checked }),
+		});
+		if (checked === true) {
+			console.log('yey');
+		} else if (checked === false) {
+			console.log('ney');
+		}
+	};
 	return (
 		<div className="row justify-content-md-center">
 			<div className="card" style={{ width: 400 }}>
@@ -70,6 +86,7 @@ function App() {
 						onKeyPress={handleKeypress}
 						value={newTask}
 					></input>
+
 					<input
 						className="form-control"
 						placeholder="Filter tasks"
@@ -87,7 +104,13 @@ function App() {
 					<ul className="list-group">
 						{task.map((item) => (
 							<li className="list-group-item list-group-item-info" key={item.id}>
-								<input type="checkbox"></input>
+								<input
+									onChange={() => checkBox(item.id)}
+									type="checkbox"
+									onClick={(event) => setChecked(event.target.checked)}
+									value={checked}
+								></input>
+
 								<a href={item.url}>{item.title}</a>
 								<button className="btn btn-outline-success" onClick={() => deleteTask(item.id)}>
 									Delete

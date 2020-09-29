@@ -12,3 +12,11 @@ html,
 header {
 	background-color: #e2f3f8 !important;
 }
+
+.facebook {
+	background-color: lightsalmon !important;
+	height: 300px;
+	width: 100px;
+	position: absolute;
+	z-index: 100;
+}

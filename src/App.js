@@ -69,7 +69,7 @@ function App() {
 	};
 	return (
 		<div className="row justify-content-md-center">
-			<div className="card p-3 m-5" style={{ width: 550 }}>
+			<div className="card p-3 m-5" style={{ width: 650 }}>
 				<img
 					className="card-img-top"
 					src="https://images.ctfassets.net/y5z23yb0t4f0/6HoqTFB9Sp7u7WdLBw0mN8/56af5b3f59dd5fc3c57b65bed1125df0/GettyImages-6696383282.jpg"

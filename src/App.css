@@ -17,3 +17,7 @@ html,
 header {
 	background-color: #e2f3f8 !important;
 }
+
+.card-img-top {
+	height: 300px;
+}

@@ -102,7 +102,14 @@ function App() {
 					<br></br>
 					<ul className="list-group">
 						{task.map((item) => (
-							<li className={item.isCompleted ? 'done' : 'notdone'} key={item.id}>
+							<li
+								className={
+									item.isCompleted
+										? 'list-group-item list-group-item-primary'
+										: 'list-group-item list-group-item-danger'
+								}
+								key={item.id}
+							>
 								{/* <li className="list-group-item list-group-item-info m-1" key={item.id}></li> */}
 								<input
 									// onChange={(status) => checkBox(item.id, status.target.checked)}

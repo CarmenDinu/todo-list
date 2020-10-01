@@ -21,3 +21,9 @@ header {
 .card-img-top {
 	height: 300px;
 }
+.done {
+	background-color: maroon;
+}
+.notdone {
+	background-color: blue;
+}

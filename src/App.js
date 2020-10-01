@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 function App() {
 	const [task, setTask] = useState([]);
 	const [newTask, setNewTask] = useState();
-	const [checked, setChecked] = useState(false);
+	// const [checked, setChecked] = useState(false);
 
 	useEffect(() => {
 		fetch(' http://localhost:6789/tasks')
@@ -52,20 +52,18 @@ function App() {
 		setTask(dates);
 	};
 
-	let checkBox = async (item) => {
+	let checkBox = async (item, status) => {
 		await fetch('http://localhost:6789/tasks/' + item + '/status/', {
 			method: 'PATCH',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ isCompleted: checked }),
+			body: JSON.stringify({ isCompleted: status }),
 		});
-		if (checked === true) {
-			console.log('yey');
-		} else if (checked === false) {
-			console.log('ney');
-		}
+		let resp = await fetch('http://localhost:6789/tasks');
+		let dates = await resp.json();
+		setTask(dates);
 	};
 	return (
 		<div className="row justify-content-md-center">
@@ -104,12 +102,13 @@ function App() {
 					<br></br>
 					<ul className="list-group">
 						{task.map((item) => (
-							<li className="list-group-item list-group-item-info m-1" key={item.id}>
+							<li className={item.isCompleted ? 'done' : 'notdone'} key={item.id}>
+								{/* <li className="list-group-item list-group-item-info m-1" key={item.id}></li> */}
 								<input
-									onChange={() => checkBox(item.id)}
+									// onChange={(status) => checkBox(item.id, status.target.checked)}
 									type="checkbox"
-									onClick={(event) => setChecked(event.target.checked)}
-									value={checked}
+									onClick={(status) => checkBox(item.id, status.target.checked)}
+									value={item.isCompleted}
 								></input>
 
 								<a href={item.url}>{item.title}</a>

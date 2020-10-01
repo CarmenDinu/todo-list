@@ -105,8 +105,8 @@ function App() {
 							<li
 								className={
 									item.isCompleted
-										? 'list-group-item list-group-item-primary'
-										: 'list-group-item list-group-item-danger'
+										? 'list-group-item list-group-item-danger m-1'
+										: 'list-group-item list-group-item-primary m-1'
 								}
 								key={item.id}
 							>
@@ -115,7 +115,7 @@ function App() {
 									// onChange={(status) => checkBox(item.id, status.target.checked)}
 									type="checkbox"
 									onClick={(status) => checkBox(item.id, status.target.checked)}
-									value={item.isCompleted}
+									checked={item.isCompleted}
 								></input>
 
 								<a href={item.url}>{item.title}</a>

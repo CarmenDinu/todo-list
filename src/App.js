@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 function App() {
 	const [task, setTask] = useState([]);
 	const [newTask, setNewTask] = useState();
-	// const [checked, setChecked] = useState(false);
 
 	useEffect(() => {
 		fetch(' http://localhost:6789/tasks')
@@ -78,7 +77,7 @@ function App() {
 
 					<input
 						className=" form-control form-control-lg "
-						placeholder="Enter new task"
+						placeholder="Enter new task and press Enter"
 						type="text"
 						onChange={(event) => setNewTask(event.target.value)}
 						onKeyPress={handleKeypress}
@@ -105,14 +104,12 @@ function App() {
 							<li
 								className={
 									item.isCompleted
-										? 'list-group-item list-group-item-danger m-1'
-										: 'list-group-item list-group-item-primary m-1'
+										? 'list-group-item list-group-item-danger '
+										: 'list-group-item list-group-item-primary '
 								}
 								key={item.id}
 							>
-								{/* <li className="list-group-item list-group-item-info m-1" key={item.id}></li> */}
 								<input
-									// onChange={(status) => checkBox(item.id, status.target.checked)}
 									type="checkbox"
 									onClick={(status) => checkBox(item.id, status.target.checked)}
 									checked={item.isCompleted}
@@ -120,7 +117,7 @@ function App() {
 
 								<a href={item.url}>{item.title}</a>
 								<button className="btn btn-outline-success" onClick={() => deleteTask(item.id)}>
-									<img className="btnImg" src="https://img.icons8.com/wired/64/000000/trash.png" />
+									Delete
 								</button>
 							</li>
 						))}
